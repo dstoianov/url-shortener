@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="container">
+
+    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+
+
+    <div class="alert alert-warning" role="alert">
+        <h1 align="center">Url with id '<span th:text="${url}"></span>' not found</h1>
+    </div>
+
+    <a href="/" class="badge badge-primary">Go back to home page</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/main_layout}">
+
+<head>
+    <title>Spring Boot Thymeleaf + Spring Security</title>
+</head>
+
+<body>
+
+<div layout:fragment="content" class="container">
+
+    <h1>Result</h1>
+
+    <p></p>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th width="15%" scope="row">Original URL:</th>
+            <td width="15%"><span th:text="${data.longUrl.length()}"></span> Characters</td>
+            <td><a th:href="${data.longUrl}" th:text="${data.longUrl}" target="_blank"/></td>
+        </tr>
+        <tr>
+            <th scope="row">Short URL:</th>
+            <td><span th:text="${data.shortKey.length()}"></span> Characters</td>
+            <td><a th:href="${data.shortKey}" th:text="${data.shortKey}" target="_blank"/></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/">Submit another URL</a>
+    </p>
+
+</div>
+</body>
+</html>

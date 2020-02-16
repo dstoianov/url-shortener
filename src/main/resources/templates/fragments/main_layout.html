@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">-->
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <link rel="icon" href="../static/favicon.ico"/>
+
+    <title>Building a Simple URL Shortener With Spring Boot</title>
+
+</head>
+<body>
+<!--header.html  that's here  -->
+<div th:replace="fragments/header :: header"></div>
+
+<div layout:fragment="content"></div>
+<!--footer.html  that's here  -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

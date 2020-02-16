@@ -1,0 +1,74 @@
+logging:
+  level:
+    .: ERROR
+    org.springframework: ERROR
+    se.techinsight: INFO
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /doc
+
+
+# turn off automatic schema creation to avoid conflicts
+spring:
+  application:
+    name: url-shortener-service
+  profiles:
+    active: dev
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: jdbc:h2:mem:test
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+# Configuring info endpoint
+info:
+  app:
+    name: Short URL Application
+    description: Short URL is a url shortener to reduce a long link. Use our tool to shorten links and then share them.
+    version: 1.0.0
+  # environment variables
+  env:
+    java:
+      vendor: ${java.specification.vendor}
+      vm-name: ${java.vm.name}
+      runtime-version: ${java.runtime.version}
+
+---
+
+spring:
+  profiles: dev
+
+  thymeleaf:
+    cache: false
+#    prefix: file:src/main/resources/templates/
+
+server:
+  port: 8080
+
+host:
+  url: "http://localhost:8080"
+
+---
+
+spring:
+  profiles: prod
+
+server:
+  port: 8085
+
+host:
+  url: "https://techinsight.se"
+
