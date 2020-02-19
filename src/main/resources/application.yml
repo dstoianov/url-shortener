@@ -70,5 +70,6 @@ server:
   port: 8085
 
 host:
-  url: "https://techinsight.se"
+#  url: "https://techinsight.se"
+  url: "https://daria.tk"
 
