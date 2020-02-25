@@ -14,8 +14,9 @@ public class ApiDocConfig {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title("URL Shortener Application API")
-                        .description("This is a sample Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
+                        .version("1.0")
+                        .title("URL Shortener Application")
+                        .description("Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
                 );
     }
 }

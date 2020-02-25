@@ -1,16 +1,9 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">
-<!--        -->
 
 <!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
-<head>
 
-
-    <link rel="icon" href="../static/favicon.ico"/>
-
-
-</head>
 <body>
 
 
@@ -26,18 +19,25 @@
             <div class="card-header">Building a Simple URL Shortener With Spring Boot</div>
             <div class="card-body">
 
+                <form action="#" th:action="@{/}" th:object="${originalUrlDto}" method="post">
 
-                <div th:text="${message}" th:if="${message ne null}" class="alert alert-warning" role="alert">
-                    A simple warning alert—check it out!
-                </div>
 
-                <form action="#" th:action="@{/add}" th:object="${data}" method="post">
+                    <!--                    https://frontbackend.com/thymeleaf/working-with-forms-in-thymeleaf -->
+
+                    <div th:text="${message}" th:if="${message ne null}" class="alert alert-warning" role="alert">
+                        A simple warning alert—check it out!
+                    </div>
 
                     <div class="form-group row">
                         <label for="urlinput" class="col-sm-2 col-form-label">Full URL:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="urlinput" th:field="*{longUrl}"
-                                   placeholder="URL">
+                                   placeholder="URL" required="required">
+
+                            <ul class="alert alert-danger" th:if="${#fields.hasErrors('longUrl')}">
+                                <li th:each="error : ${#fields.errors('longUrl')}" th:text="${error}">error</li>
+                            </ul>
+
                         </div>
                     </div>
 

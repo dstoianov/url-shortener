@@ -3,11 +3,16 @@
 <!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">-->
 <head>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css"/>-->
+    <!--    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>-->
 
-    <link rel="icon" href="../static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
 
-    <title>Building a Simple URL Shortener With Spring Boot</title>
+    <link rel="icon" th:href="@{/img/favicon.ico} " href="/img/favicon.ico"/>
+
+    <title>Simple URL Shortener</title>
 
 </head>
 <body>
