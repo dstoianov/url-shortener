@@ -2,6 +2,7 @@ package se.techinsight.urlshortener;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,21 +15,18 @@ import se.techinsight.urlshortener.service.UrlShortenerService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
-import java.util.Map;
 
 @Slf4j
 @Tag(name = "Url Controller", description = "API for working with URL Controller")
-@RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Validated
+@RestController
 @RequestMapping(value = {"/api/url"})
 public class UrlController {
 
-    @Autowired
-    private UrlShortenerService service;
+    private final UrlShortenerService service;
 
-    @Operation(
-            tags = "Development",
-            summary = "Get URL object by {id}",
+    @Operation(summary = "Get URL object by {id}",
             description = "Developers endpoint, for debug reasons only")
     @GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UrlShortener get(@PathVariable("id") Long id) {
@@ -51,9 +49,8 @@ public class UrlController {
     @Operation(summary = "Delete URL object by {shorten_key}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     @DeleteMapping(value = "/{shorten_key}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, Object> delete(@PathVariable("shorten_key") @Size(min = 1, max = 6) String shortenKey) {
+    public void delete(@PathVariable("shorten_key") @Size(min = 1, max = 6) String shortenKey) {
         service.delete(shortenKey);
-        return Map.of("deleted", Boolean.TRUE);
     }
 
     @Operation(summary = "Update {short_key} by {id}")

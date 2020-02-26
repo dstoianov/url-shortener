@@ -1,6 +1,7 @@
 package se.techinsight.urlshortener.web;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,15 @@ import java.util.Optional;
 @Slf4j
 @Tag(name = "Business Logic Controller", description = "Business logic of the service")
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UrlBusinessController {
 
     @Value("${host.url}")
     private String hostUrl;
 
-    @Autowired
-    private UrlShortenerRepository repository;
+    private final UrlShortenerRepository repository;
 
-    @Autowired
-    private UrlShortenerService urlShortenerService;
+    private final UrlShortenerService urlShortenerService;
 
     @GetMapping(value = "/")
     public String index(Model model) {
