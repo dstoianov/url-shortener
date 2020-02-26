@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import se.techinsight.urlshortener.api.dto.OriginalUrlDto;
@@ -50,10 +49,11 @@ public class UrlController {
     }
 
     @Operation(summary = "Delete URL object by {shorten_key}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     @DeleteMapping(value = "/{shorten_key}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity delete(@PathVariable("shorten_key") @Size(min = 1, max = 6) String shortenKey) {
+    public Map<String, Object> delete(@PathVariable("shorten_key") @Size(min = 1, max = 6) String shortenKey) {
         service.delete(shortenKey);
-        return new ResponseEntity<>(Map.of("deleted", Boolean.TRUE), HttpStatus.ACCEPTED);
+        return Map.of("deleted", Boolean.TRUE);
     }
 
     @Operation(summary = "Update {short_key} by {id}")
