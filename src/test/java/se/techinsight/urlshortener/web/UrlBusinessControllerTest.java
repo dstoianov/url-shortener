@@ -14,7 +14,8 @@ import static org.hamcrest.Matchers.hasProperty;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.flash;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -85,7 +86,7 @@ class UrlBusinessControllerTest {
         this.mockMvc.perform(post("/")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("longUrl", "https://www.yahoo.com/")
-                .param("shortKey", "g1")
+                .param("shortKey", "g3")
                 .sessionAttr("originalUrlDto", new OriginalUrlDto())
         )
                 .andExpect(status().is3xxRedirection())
