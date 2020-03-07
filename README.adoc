@@ -1,4 +1,13 @@
 = Url Shortener project based on spring boot icon:power-off[]
+ifdef::env-github[]
+:imagesdir:
+ https://gist.githubusercontent.com/path/to/gist/revision/dir/with/all/images
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 :icons: font
 :toc: left
 :toclevels: 4
@@ -56,12 +65,13 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 * https://spring.io/guides/gs/actuator-service/[actuator-service]
 
 .pom.xml
-```xml
+[source,xml]
+----
 <dependency>
     <groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
-```
+----
 
 ===  Springdoc OpenAPI
 

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 public class IdConverterService {
 
     private static final String POSSIBLE_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    //    private static final String POSSIBLE_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ALPHABET_LENGTH = POSSIBLE_ALPHABET.length();
 
 
