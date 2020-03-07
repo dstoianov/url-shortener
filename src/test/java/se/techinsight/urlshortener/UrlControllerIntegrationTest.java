@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 import se.techinsight.urlshortener.api.dto.OriginalUrlDto;
 import se.techinsight.urlshortener.domain.UrlShortener;
 
@@ -92,7 +89,6 @@ class UrlControllerIntegrationTest {
     }
 
     @Test
-    @Rollback
     void updateEntityKey_andGetByKey() {
 //        update the key
         var response = testRestTemplate.exchange(baseUrl + "/1/deu", HttpMethod.PUT, new HttpEntity<>(getHeaders()), UrlShortener.class);

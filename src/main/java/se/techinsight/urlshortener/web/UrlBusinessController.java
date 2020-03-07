@@ -55,7 +55,7 @@ public class UrlBusinessController {
         }
 
         if (StringUtils.isNotBlank(originalUrlDto.getShortKey()) &&
-                !repository.findByShortenKey(originalUrlDto.getShortKey()).isPresent()) {
+                !repository.findByShortenKey(originalUrlDto.getShortKey()).isEmpty()) {
             String message = String.format("Key '%s' already exists", originalUrlDto.getShortKey());
             log.error(message);
             attributes.addFlashAttribute("message", message);
