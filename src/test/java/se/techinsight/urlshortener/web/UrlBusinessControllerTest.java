@@ -91,7 +91,7 @@ class UrlBusinessControllerTest {
         )
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/"))
-                .andExpect(flash().attribute("message",  containsString("Key 'g1' already exists")))
+                .andExpect(flash().attribute("message", containsString("Key 'g3' already exists")))
                 .andDo(print());
     }
 
