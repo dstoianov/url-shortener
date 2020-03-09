@@ -73,6 +73,11 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 </dependency>
 ----
 
+=== Data base changing
+
+. liquibase
+. flyway
+
 ===  Springdoc OpenAPI
 
 * https://springdoc.github.io/springdoc-openapi-demos/

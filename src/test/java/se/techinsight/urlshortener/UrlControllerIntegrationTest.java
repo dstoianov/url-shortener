@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import se.techinsight.urlshortener.api.dto.OriginalUrlDto;
 import se.techinsight.urlshortener.domain.UrlShortener;
 
@@ -18,7 +19,9 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@ActiveProfiles({"test"})
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/insert_test_data.sql")
+@Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/delete_test_data.sql")
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class UrlControllerIntegrationTest {
 
@@ -54,7 +57,7 @@ class UrlControllerIntegrationTest {
         ResponseEntity<UrlShortener> response = testRestTemplate.getForEntity(baseUrl + "/g2", UrlShortener.class);
 
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
-        assertThat(response.getBody().getLongUrl(), containsString("https://www.google.com"));
+        assertThat(response.getBody().getLongUrl(), equalTo("https://www.google.com.ua"));
     }
 
     @Test
