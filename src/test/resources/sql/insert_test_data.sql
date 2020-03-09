@@ -1,5 +1,7 @@
 -- URL
 
+INSERT INTO url_shortener (id, long_url, shorten_key)
+VALUES (1, 'https://www.google.com', 'g0');
 INSERT INTO url_shortener (long_url, shorten_key)
 VALUES ('https://www.google.com', 'g1');
 INSERT INTO url_shortener (long_url, shorten_key)
