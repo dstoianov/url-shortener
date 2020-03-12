@@ -63,6 +63,7 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 
 * https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html[Official documentation]
 * https://spring.io/guides/gs/actuator-service/[actuator-service]
+** link to actuator http://localhost:8080/actuator
 
 .pom.xml
 [source,xml]
