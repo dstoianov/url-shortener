@@ -91,12 +91,13 @@ pipeline {
             }
         }
 
-        stage('deploy') {
+        stage('docker deploy') {
             steps {
                 sh "echo 'more how to here https://dzone.com/articles/microservices-and-devops-1'"
+                sh "echo 'more how to https://github.com/Microservices-DevOps/person/blob/master/Jenkinsfile'"
                 sh "docker ps"
                 sh "docker ps -q --filter \"name=${env.DOCKER_IMG_NAME}\" | grep -q . && docker stop ${env.DOCKER_IMG_NAME} || echo \"image '${env.DOCKER_IMG_NAME}' Not running\""
-                sh "docker rm ${env.DOCKER_IMG_NAME}"
+                sh "docker rm ${env.DOCKER_IMG_NAME} && echo 'OK' || echo 'NOK'"
                 sh "docker run --restart=always -d -p 8085:8085 -e \"SPRING_PROFILES_ACTIVE=prod\" --name ${env.DOCKER_IMG_NAME} -t ${env.DOCKER_IMG_NAME}:${env.DOCKER_IMG_TAG}"
                 sh "sleep 3"
                 sh "docker ps"
