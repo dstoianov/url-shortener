@@ -1,7 +1,5 @@
 = Spring Testing
 ifdef::env-github[]
-:imagesdir:
- https://gist.githubusercontent.com/path/to/gist/revision/dir/with/all/images
 :tip-caption: :bulb:
 :note-caption: :information_source:
 :important-caption: :heavy_exclamation_mark:
@@ -13,11 +11,18 @@ endif::[]
 :toclevels: 4
 :toc-title: Table of Contents
 
-== Type of tests by layers
+== Layers
 
-=== Layers
+=== Type of tests by layers
 
-==== 1. Integration Tests
+The layers of automated testing pyramid
+
+.automated testing pyramid
+[#img-sunset]
+[caption="Figure 1: ",link=https://miro.medium.com/max/1336/1*KP4gROJW3edatj0aVnTlpA.jpeg]
+image::doc/testing_pyramid.jpeg[pyramid,70%]
+
+=== 1. Integration Tests
 
 REST API tests, controllers tests, testing integration with other services by using MOCKS or Stubs
 
@@ -58,7 +63,7 @@ public void givenUrl_whenJsonResponseHasArrayWithGivenValuesUnderKey_thenCorrect
 }
 ----
 
-==== 2. Middle Layer Tests
+=== 2. Middle Layer Tests
 
 it like integration but a bit low layer without do a real http call
 
@@ -103,7 +108,7 @@ public class EmployeeRestControllerIntegrationTest {
 }
 ----
 
-==== 3. Unit Tests
+=== 3. Unit Tests
 
 Classical unit tests.
 It focuses on single component or method in class and mocks all dependencies this component interacts with

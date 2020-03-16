@@ -1,7 +1,5 @@
 = Url Shortener project based on spring boot icon:power-off[]
 ifdef::env-github[]
-:imagesdir:
- https://gist.githubusercontent.com/path/to/gist/revision/dir/with/all/images
 :tip-caption: :bulb:
 :note-caption: :information_source:
 :important-caption: :heavy_exclamation_mark:
@@ -74,6 +72,15 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 </dependency>
 ----
 
+=== Template Engines
+
+. FreeMarker
+. Groovy Templates
+. Thymeleaf
+. Velocity
+. Mustache
+. GSP = Groovy Server Pages
+
 === Data base changing
 
 . liquibase
@@ -89,6 +96,10 @@ springdoc.swagger-ui.path=/doc
 ```
 
 open in browser `http://localhost:8080/doc` for documentation
+
+== Spring Boot family
+
+image::doc/spring_family.jpg[Spring Family,80%]
 
 == Test icon:info-circle[]
 
