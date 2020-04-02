@@ -12,6 +12,7 @@ logging:
 springdoc:
   swagger-ui:
     path: /doc
+  packages-to-scan: se.techinsight.urlshortener
 
 
 # turn off automatic schema creation to avoid conflicts
@@ -29,6 +30,7 @@ spring:
     property-naming-strategy: SNAKE_CASE
   datasource:
     url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #    url: jdbc:h2:mem:test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
     driverClassName: org.h2.Driver
     username: sa
     password:

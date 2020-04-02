@@ -18,9 +18,10 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 public class UrlShortener extends Auditable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
     @Column(nullable = false)
     private String longUrl;

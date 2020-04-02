@@ -31,6 +31,8 @@ It's possible to use emojis as admonition icons on GitHub.
 . Build image `docker build . --tag url-shortener:1.0` with version (image tag)
 . Run docker image `docker run -it -p 8080:8080 url-shortener:latest`
 . Run with Spring profile `docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8085:8085 -t url-shortener`
+. `./gradlew wrapper --gradle-version 6.2.2` https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:upgrading_wrapper[Update gradle version]
+
 
 docker run -rm -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t url-shortener
 
@@ -83,8 +85,8 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 
 === Data base changing
 
-. liquibase
-. flyway
+. LiquiBase (free and Easily rollback changes)
+. Flyway (payable for rollback)
 
 ===  Springdoc OpenAPI
 
@@ -95,13 +97,17 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 springdoc.swagger-ui.path=/doc
 ```
 
-open in browser `http://localhost:8080/doc` for documentation
+open in browser `http://localhost:8080/doc` for documentation,
+
+.There are 2 versions of Open API documentaiton
+. http://localhost:8080/v2/api-docs used only for testing purposes
+. http://localhost:8080/v3/api-docs
 
 == Spring Boot family
 
 image::doc/spring_family.jpg[Spring Family,80%]
 
-== Test icon:info-circle[]
+== Section for testing ascii-doc icon:info-circle[]
 
 * https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
 * Every list item has at least one paragraph of content, which may be wrapped, even using a hanging indent.

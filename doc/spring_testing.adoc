@@ -11,16 +11,32 @@ endif::[]
 :toclevels: 4
 :toc-title: Table of Contents
 
-== Layers
 
-=== Type of tests by layers
 
-The layers of automated testing pyramid
+== Type of tests by layers
+
+=== The layers of automated testing pyramid
+
+https://medium.com/@SphereSoftware/achieving-quality-code-and-roi-through-test-automation-db60f3f7f24a[link to article]
 
 .automated testing pyramid
 [#img-sunset]
 [caption="Figure 1: ",link=https://miro.medium.com/max/1336/1*KP4gROJW3edatj0aVnTlpA.jpeg]
 image::doc/testing_pyramid.jpeg[pyramid,70%]
+
+=== Automated testing takes place on several levels of the project:
+
+. *Unit testing:* Usually performed by developers, the main goal of these tests is to make sure that the app’s components match in terms of functional requirements.
+For example, a unit test could involve an OOP class or function.
+. *Component testing:* Usually performed by developers, the “component” being tested is a part of the high-coupled logic.
+For example, authorization, payment processing, and order submission could all be components.
+. *Integration testing:* Usually performed by developers and QA, the goal of these tests is to make sure the app’s components all interact properly.
+. *System testing:* Performed by QA, these tests check that the application and the system are compatible.
+. *Acceptance testing:* Performed by QA, these tests are done to ensure that the specification requirements are met.
+. *Alpha testing:* Performed by development and user experience teams, these tests are done at the end of the development process.
+. *Beta testing:* Performed by user experience teams, these tests are done just before the product is launched.
+
+== Layers
 
 === 1. Integration Tests
 
