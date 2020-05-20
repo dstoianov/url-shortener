@@ -107,6 +107,10 @@ open in browser `http://localhost:8080/doc` for documentation,
 
 image::doc/spring_family.jpg[Spring Family,80%]
 
+== Open API 2 (Swagger2) to 3 Converter
+
+image::doc/openapi-2-to-3-converter.png[Spring Family,80%]
+
 == Section for testing ascii-doc icon:info-circle[]
 
 * https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
