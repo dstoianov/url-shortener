@@ -4,6 +4,20 @@
         <encoder>
             <!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
             <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %green([%thread]) %cyan(%logger{36}:%line) - %msg%n</pattern>
+
+            <!--            <if condition='property("os.name").contains("Mac")'>-->
+            <!--                <then>-->
+            <!--                    <pattern>-->
+            <!--                        %d{"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"} %X{tracing-context:&#45;&#45;} %X{custom-metadata-context:&#45;&#45;} %highlight(%-5level) %green([%thread]) %cyan(%logger{36}:%line) - %msg%n-->
+            <!--                    </pattern>-->
+            <!--                </then>-->
+            <!--                <else>-->
+            <!--                    <pattern>-->
+            <!--                        %d{"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"} %X{tracing-context:&#45;&#45;} %X{custom-metadata-context:&#45;&#45;} %-5level %t %logger{36} %msg%ex%n-->
+            <!--                    </pattern>-->
+            <!--                </else>-->
+            <!--            </if>-->
+
         </encoder>
     </appender>
 
