@@ -61,9 +61,10 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.techinsight.Application"]
 ----
 
-== Packaging OCI Images
+== Packaging OCI Images, Layered Jars
 
-. link to the https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/#build-image[documentation]
+. link to the https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/#repackage-layers[documentation]
+. https://ostechnix.com/how-to-analyze-and-explore-the-contents-of-docker-images/
 . run command
 +
 [source,bash]
