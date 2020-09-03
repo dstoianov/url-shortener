@@ -33,6 +33,8 @@ spring:
     show-sql: false
   jackson:
     property-naming-strategy: SNAKE_CASE
+  #    serialization:
+  #      write-dates-as-timestamps: false
   datasource:
     url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driverClassName: org.h2.Driver

@@ -1,4 +1,5 @@
 = Url Shortener project based on spring boot icon:power-off[]
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -6,6 +7,8 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
+:sectnums:
+:sectnumlevels: 5
 :icons: font
 :toc: left
 :toclevels: 4
@@ -14,17 +17,17 @@ endif::[]
 [TIP]
 It's possible to use emojis as admonition icons on GitHub.
 
-== 1. Requirements
+== Requirements
 
 . Git
 . Java JDK 11
 . Apache Maven
 
-== 2. Spring Boot Tutorials icon:fire[]
+== Spring Boot Tutorials icon:fire[]
 
 . API documentation for the project located here `http://localhost:8080/doc`
 
-== 3. Docker Image
+== Docker Image
 
 . Package `jar` file `mvn clean package`
 . Build image `docker build . --tag url-shortener` or `docker build --no-cache -t url-shortener .`
@@ -36,7 +39,8 @@ docker run -rm -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t url-shortener
 
 . run jar local `java -Dspring.profiles.active=prod -jar target/url-shortener-1.0.0-SNAPSHOT.jar`
 
-```sh
+[source,sh]
+----
 FROM adoptopenjdk/openjdk11:alpine-slim as build
 WORKDIR /workspace/app
 
@@ -55,9 +59,39 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.techinsight.Application"]
-```
+----
 
-===  Actuator service
+== Packaging OCI Images
+
+. link to the https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/#build-image[documentation]
+. run command
++
+[source,bash]
+----
+mvn clean spring-boot:build-image
+docker run -it -p80:8080 url-shortener:1.0.0-SNAPSHOT
+curl -s http://localhost:80/actuator/info | jq .
+{
+  "app": {
+    "name": "url-shortener-service",
+    "description": "URL Shortener on Spring Boot",
+    "version": "1.0.0-SNAPSHOT"
+  },
+  "env": {
+    "java": {
+      "vendor": "Oracle Corporation",
+      "vm-name": "OpenJDK 64-Bit Server VM",
+      "runtime-version": "11.0.4+11"
+    }
+  },
+  "context": {
+    "bean-definition-count": 387,
+    "startup-date": 1599166535710
+  }
+}
+----
+
+==  Actuator service
 
 * https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html[Official documentation]
 * https://spring.io/guides/gs/actuator-service/[actuator-service]
@@ -72,7 +106,7 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 </dependency>
 ----
 
-=== Template Engines
+== Template Engines
 
 . FreeMarker
 . Groovy Templates
@@ -81,19 +115,20 @@ ENTRYPOINT ["java","-cp","app:app/lib/*","-Dspring.profiles.active=prod","se.tec
 . Mustache
 . GSP = Groovy Server Pages
 
-=== Data base changing
+== Data base changing
 
 . liquibase
 . flyway
 
-===  Springdoc OpenAPI
+==  Springdoc OpenAPI
 
 * https://springdoc.github.io/springdoc-openapi-demos/
 
-```property
+[source,properties]
+----
 # swagger-ui custom path
 springdoc.swagger-ui.path=/doc
-```
+----
 
 open in browser `http://localhost:8080/doc` for documentation
 
