@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.notNullValue;
 @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:sql/insert_test_data.sql")
 @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:sql/delete_test_data.sql")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UrlControllerSwaggerIntegrationTest {
+class UrlControllerSwaggerIntegrationTest {
 
     @Value("http://localhost:${local.server.port}")
     private String baseUrl;
@@ -46,7 +46,7 @@ public class UrlControllerSwaggerIntegrationTest {
     @Test
     void getExistedEntity_OK() {
         int linkId = 1;
-        //@formatter:off
+        //@formatter:on
         given()
                 .spec(spec)
                 .when()
@@ -56,7 +56,7 @@ public class UrlControllerSwaggerIntegrationTest {
                 .body("id", is(linkId))
                 .body("shorten_key", is("g1"))
         ;
-        //@formatter:on
+        //@formatter:off
     }
 
     @Test

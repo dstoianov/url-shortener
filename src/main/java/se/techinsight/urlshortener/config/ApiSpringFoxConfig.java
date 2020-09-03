@@ -20,9 +20,10 @@ public class ApiSpringFoxConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+//                .useDefaultResponseMessages(false)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("se.techinsight.urlshortener"))
                 .paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("se.techinsight.urlshortener"))
                 .build();
     }
 

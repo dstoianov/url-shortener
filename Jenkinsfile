@@ -110,7 +110,7 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+            junit keepLongStdio: true, allowEmptyResults: true, testResults: 'target/surefire-reports/TEST-*.xml'
             archiveArtifacts artifacts: 'target/*.jar'
         }
     }
