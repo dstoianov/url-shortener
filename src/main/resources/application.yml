@@ -15,6 +15,7 @@ logging:
 springdoc:
   swagger-ui:
     path: /doc
+  packages-to-scan: se.techinsight.urlshortener
 
 
 spring:
@@ -30,13 +31,15 @@ spring:
     hibernate:
       # turn off automatic schema creation to avoid conflicts
       ddl-auto: none
+      use-new-id-generator-mappings: false
     show-sql: false
   jackson:
     property-naming-strategy: SNAKE_CASE
   #    serialization:
   #      write-dates-as-timestamps: false
   datasource:
-    url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:mem:test;MODE=MYSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #    url: jdbc:h2:mem:test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
     driverClassName: org.h2.Driver
     username: sa
     password:

@@ -18,3 +18,8 @@
 .mvn/
 target/
 /.idea/
+
+# Other files
+/swagger-coverage-output/
+/swagger-coverage-*/
+swagger-coverage-*

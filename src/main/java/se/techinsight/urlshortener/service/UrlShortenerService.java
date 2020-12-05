@@ -1,8 +1,8 @@
 package se.techinsight.urlshortener.service;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import se.techinsight.urlshortener.api.dto.OriginalUrlDto;
@@ -14,16 +14,11 @@ import se.techinsight.urlshortener.repository.UrlShortenerRepository;
 @Slf4j
 @Transactional
 @Service
+@AllArgsConstructor
 public class UrlShortenerService {
 
     private final UrlShortenerRepository urlRepository;
     private final IdConverterService idConverterService;
-
-    @Autowired
-    public UrlShortenerService(UrlShortenerRepository urlRepository, IdConverterService idConverterService) {
-        this.urlRepository = urlRepository;
-        this.idConverterService = idConverterService;
-    }
 
     public UrlShortener findUrlById(Long id) {
         log.info("Find url by id '{}'", id);
@@ -39,7 +34,6 @@ public class UrlShortenerService {
         log.info("Find url by key '{}'", shortenKey);
         return urlRepository.findByShortenKey(shortenKey).orElseThrow(() -> new UrlNotFoundException(shortenKey));
     }
-
 
     public UrlShortener findWithUpdateUrlById(Long id) {
         UrlShortener entity = findUrlById(id);

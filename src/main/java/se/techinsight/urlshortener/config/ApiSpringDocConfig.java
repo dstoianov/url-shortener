@@ -7,7 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ApiDocConfig {
+public class ApiSpringDocConfig {
+
+    /**
+     * Documentation in OpenApi 3.0
+     * http://localhost:8080/v3/api-docs
+     */
 
     @Bean
     public OpenAPI customOpenAPI() {

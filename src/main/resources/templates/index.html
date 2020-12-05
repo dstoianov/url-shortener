@@ -2,16 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/main_layout}">
 
-<!--<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
-
 <body>
-
 
 <div layout:fragment="content" class="container">
 
-
     <div class="container">
-
         <h1 class="text-center"> Shorty: URL Shortener</h1>
         <p class="lead text-center"> Create personalized short-links </p>
 
@@ -21,9 +16,7 @@
 
                 <form action="#" th:action="@{/}" th:object="${originalUrlDto}" method="post">
 
-
-                    <!--                    https://frontbackend.com/thymeleaf/working-with-forms-in-thymeleaf -->
-
+                    <!-- https://frontbackend.com/thymeleaf/working-with-forms-in-thymeleaf -->
                     <div th:text="${message}" th:if="${message ne null}" class="alert alert-warning" role="alert">
                         A simple warning alert—check it out!
                     </div>
@@ -33,11 +26,9 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="urlinput" th:field="*{longUrl}"
                                    placeholder="URL" required="required">
-
                             <ul class="alert alert-danger" th:if="${#fields.hasErrors('longUrl')}">
                                 <li th:each="error : ${#fields.errors('longUrl')}" th:text="${error}">error</li>
                             </ul>
-
                         </div>
                     </div>
 
@@ -48,20 +39,14 @@
                                    placeholder="Please add an (optional) name for your short link">
                         </div>
                     </div>
-
                     <button type="reset" class="btn btn-primary">Clear</button>
                     <button type="submit" class="btn btn-primary">Create short link</button>
-
                 </form>
 
             </div>
         </div>
-
-
     </div>
-
 </div>
-
 
 </body>
 </html>

@@ -71,8 +71,8 @@ public class UrlBusinessController {
         return "result";
     }
 
-    @GetMapping(value = "/{shorten_str}")
-    public ModelAndView redirectToOriginalUrl(@PathVariable("shorten_str") String shortenKey, ModelMap model) {
+    @GetMapping(value = "/{shorten_key}")
+    public ModelAndView redirectToOriginalUrl(@PathVariable("shorten_key") String shortenKey, ModelMap model) {
         Optional<UrlShortener> url = repository.findByShortenKey(shortenKey);
         if (url.isPresent()) {
             log.info("Url exist with id '{}'", shortenKey);

@@ -1,5 +1,6 @@
 package se.techinsight.urlshortener;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import se.techinsight.urlshortener.api.dto.OriginalUrlDto;
 import se.techinsight.urlshortener.domain.UrlShortener;
+import se.techinsight.urlshortener.domain.Views;
 import se.techinsight.urlshortener.service.UrlShortenerService;
 
 import javax.validation.Valid;
@@ -26,20 +36,22 @@ public class UrlController {
 
     private final UrlShortenerService service;
 
-    @Operation(summary = "Get URL object by {id}",
-            description = "Developers endpoint, for debug reasons only")
+    @Operation(summary = "Get URL object by {id}", description = "Developers endpoint, for debug reasons only")
+    @JsonView(Views.Internal.class)
     @GetMapping(value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UrlShortener get(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     @Operation(summary = "Get URL object by {shorten_key}")
+    @JsonView(Views.Public.class)
     @GetMapping(value = "/{shorten_key}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UrlShortener getByKey(@PathVariable("shorten_key") @Size(min = 1, max = 6) String shortenKey) {
         return service.findByShortenKey(shortenKey);
     }
 
     @Operation(summary = "Create URL object")
+    @JsonView(Views.Public.class)
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public UrlShortener create(@Valid @RequestBody OriginalUrlDto dto) {
