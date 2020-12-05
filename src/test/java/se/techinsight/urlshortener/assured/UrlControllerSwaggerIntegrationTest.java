@@ -36,27 +36,30 @@ class UrlControllerSwaggerIntegrationTest {
     void setUp() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         spec = new RequestSpecBuilder()
-                .setBaseUri(baseUrl)
-                .setContentType(ContentType.JSON)
-                .setConfig(RestAssured.config().redirect(redirectConfig().followRedirects(false)))
-                .addFilter(new SwaggerCoverageRestAssured())
-                .build();
+            .setBaseUri(baseUrl)
+            .setContentType(ContentType.JSON)
+            .setConfig(RestAssured.config().redirect(redirectConfig().followRedirects(false)))
+            .addFilter(new SwaggerCoverageRestAssured())
+            .build();
     }
 
     @Test
     void getExistedEntity_OK() {
         int linkId = 1;
-        //@formatter:on
+
+//        Enable formatter markers in comments
+        //@formatter:off
         given()
                 .spec(spec)
-                .when()
-                .get("/api/url/id/{id}", linkId).prettyPeek()
-                .then()
+        .when()
+                .get("/api/url/id/{id}", linkId)
+                .prettyPeek()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("id", is(linkId))
                 .body("shorten_key", is("g1"))
         ;
-        //@formatter:off
+        //@formatter:on
     }
 
     @Test
@@ -65,9 +68,10 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
-                .get("/api/url/id/{id}", linkId).prettyPeek()
-                .then()
+        .when()
+                .get("/api/url/id/{id}", linkId)
+                .prettyPeek()
+        .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("message", containsString("Could not find url with id : " + linkId))
         ;
@@ -80,9 +84,9 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
+        .when()
                 .get("/api/url/id/{id}", linkId).prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
         ;
         //@formatter:on
@@ -95,17 +99,18 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
-                .delete("/api/url/{shorten_key}", linkKey).prettyPeek()
-                .then()
+        .when()
+                .delete("/api/url/{shorten_key}", linkKey)
+                .prettyPeek()
+        .then()
                 .statusCode(HttpStatus.ACCEPTED.value())
         ;
 
         given()
                 .spec(spec)
-                .when()
+        .when()
                 .get("/api/url/{shorten_key}", linkKey).prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
         ;
         //@formatter:on
@@ -118,9 +123,9 @@ class UrlControllerSwaggerIntegrationTest {
         given()
                 .spec(spec)
                 .body(request)
-                .when()
+        .when()
                 .post("/api/url/").prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.CREATED.value())
                 .body("long_url", is(request.getLongUrl()))
                 .body("shorten_key", notNullValue())
@@ -135,17 +140,17 @@ class UrlControllerSwaggerIntegrationTest {
         given()
                 .spec(spec)
                 .body(toCreateDto)
-                .when()
+        .when()
                 .post("/api/url/").prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.CREATED.value())
         ;
 
         given()
                 .spec(spec)
-                .when()
+        .when()
                 .get("/api/url/{short_key}", toCreateDto.getShortKey()).prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("long_url", is(toCreateDto.getLongUrl()))
                 .body("shorten_key", is(toCreateDto.getShortKey()))
@@ -159,16 +164,15 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
+        .when()
                 .get("/api/url/{short_key}", shortKey).prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("long_url", is("https://www.google.com"))
                 .body("shorten_key", is(shortKey))
         ;
         //@formatter:on
     }
-
 
     @Test
     void updateEntityKey_andGetByKey() {
@@ -177,9 +181,10 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
-                .put("/api/url/{id}/{short_key}", id, shortKey).prettyPeek()
-                .then()
+        .when()
+                .put("/api/url/{id}/{short_key}", id, shortKey)
+                .prettyPeek()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("id", is(id))
                 .body("shorten_key", is(shortKey))
@@ -191,11 +196,9 @@ class UrlControllerSwaggerIntegrationTest {
 //        assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
     }
 
-
     /**
      * WEB Tests
      */
-
 
     @Test
     void getByExistedKey_FOUND() {
@@ -203,9 +206,10 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
-                .get("/{shorten_key}", shortenKey).prettyPeek()
-                .then()
+        .when()
+                .get("/{shorten_key}", shortenKey)
+                .prettyPeek()
+        .then()
                 .statusCode(HttpStatus.FOUND.value())
                 .header("Location", notNullValue())
                 .header("Location", equalTo("https://www.google.com.ua"))
@@ -213,19 +217,16 @@ class UrlControllerSwaggerIntegrationTest {
         //@formatter:on
     }
 
-
     @Test
     void getIndex_OK() {
         //@formatter:off
         given()
                 .spec(spec)
-                .when()
+        .when()
                 .get("/").prettyPeek()
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value())
         ;
         //@formatter:on
     }
-
-
 }
