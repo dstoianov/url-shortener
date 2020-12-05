@@ -10,6 +10,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <scm>
+        <connection>scm:git:git@github.com:dstoianov/url-shortener.git</connection>
+        <tag>HEAD</tag>
+    </scm>
+
     <groupId>se.techinsight</groupId>
     <artifactId>url-shortener</artifactId>
     <version>1.0.0-SNAPSHOT</version>

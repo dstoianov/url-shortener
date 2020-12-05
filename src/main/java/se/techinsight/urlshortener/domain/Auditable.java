@@ -1,5 +1,6 @@
 package se.techinsight.urlshortener.domain;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,11 +22,13 @@ public abstract class Auditable {
     @CreatedDate
     @Column(name = "creation_date_time", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonView({Views.Public.class})
     protected Date creationDateTime;
 
     @LastModifiedDate
     @Column(name = "last_modified_date")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonView({Views.Internal.class})
     protected Date lastModifiedDate;
 
 }
