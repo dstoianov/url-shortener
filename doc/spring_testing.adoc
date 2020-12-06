@@ -22,7 +22,7 @@ https://medium.com/@SphereSoftware/achieving-quality-code-and-roi-through-test-a
 .automated testing pyramid
 [#img-sunset]
 [caption="Figure 1: ",link=https://miro.medium.com/max/1336/1*KP4gROJW3edatj0aVnTlpA.jpeg]
-image::doc/testing_pyramid.jpeg[pyramid,70%]
+image::testing_pyramid.jpeg[pyramid,70%]
 
 === Automated testing takes place on several levels of the project:
 
