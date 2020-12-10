@@ -6,7 +6,7 @@ jobs:
 
   ci_part:
     name: Compile and run unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - name: Git clone the repo
@@ -27,7 +27,7 @@ jobs:
 
   sonar_part:
     name: Analyze with SonarCloud
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     needs: [ci_part]
 
     steps:
