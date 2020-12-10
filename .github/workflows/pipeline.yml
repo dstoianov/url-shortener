@@ -19,7 +19,8 @@ jobs:
         run: mvn -B compile
       - name: run unit tests
         run: mvn -B verify -Dspring.profiles.active=test
-      - uses: actions/upload-artifact@v2
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
         with:
           name: target
           path: target/
@@ -30,14 +31,14 @@ jobs:
     needs: [ci_part]
 
     steps:
-      - uses: actions/download-artifact@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
         with:
           name: target
           path: target/
       - name: display target dir
         run: |
-          ls -la
-          tree
+          ls -lah target/
       #      - name: Set up JDK 11
       #        uses: actions/setup-java@v1
       #        with:
