@@ -15,13 +15,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
-      - name: Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      #      - name: Cache local Maven repository
+      #        uses: actions/cache@v2
+      #        with:
+      #          path: ~/.m2/repository
+      #          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      #          restore-keys: |
+      #            ${{ runner.os }}-maven-
       - name: compile
         run: mvn -B compile
       - name: run unit tests
