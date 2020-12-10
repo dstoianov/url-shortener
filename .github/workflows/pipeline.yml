@@ -1,0 +1,61 @@
+name: Java-CI
+
+on: [push]
+
+jobs:
+
+  ci_part:
+    name: Compile and run unit tests
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Git clone the repo
+        uses: actions/checkout@v1
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11.0.4
+      #      - name: Cache local Maven repository
+      #        uses: actions/cache@v2
+      #        with:
+      #          path: ~/.m2/repository
+      #          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      #          restore-keys: |
+      #            ${{ runner.os }}-maven-
+      - name: compile
+        run: mvn -B compile
+      - name: run unit tests
+        run: mvn -B verify -Dspring.profiles.active=test
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: target
+          path: target/
+
+  sonar_part:
+    name: Analyze with SonarCloud
+    runs-on: ubuntu-18.04
+    needs: [ci_part]
+
+    steps:
+      - name: Git clone the repo
+        uses: actions/checkout@v1
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: target
+          path: target/
+      - name: display target dir
+        run: |
+          ls -lah target/
+      #      - name: Set up JDK 11
+      #        uses: actions/setup-java@v1
+      #        with:
+      #          java-version: 11.0.4
+      - name: SonarCloud Scan
+        run: |
+          ls -la
+          mvn -B sonar:sonar -Dsonar.organization=dstoianov -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
