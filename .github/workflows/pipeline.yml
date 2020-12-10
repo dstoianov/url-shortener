@@ -17,21 +17,31 @@ jobs:
           java-version: 11.0.4
       - name: compile
         run: mvn -B compile
-      - name: run unit test
+      - name: run unit tests
         run: mvn -B verify -Dspring.profiles.active=test
+      - uses: actions/upload-artifact@v2
+        with:
+          name: maven target
+          path: target/
 
   sonar_part:
-    name: SonarCloud Scan
+    name: Analyze with SonarCloud
     runs-on: ubuntu-latest
     needs: [ci_part]
 
     steps:
-      - name: Git clone the repo
-        uses: actions/checkout@v1
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
+      - uses: actions/download-artifact@v2
         with:
-          java-version: 11.0.4
+          name: my-artifact
+          path: target/
+      - name: display target dir
+        run: |
+          ls -la
+          tree
+      #      - name: Set up JDK 11
+      #        uses: actions/setup-java@v1
+      #        with:
+      #          java-version: 11.0.4
       - name: SonarCloud Scan
         run: |
           ls -la
