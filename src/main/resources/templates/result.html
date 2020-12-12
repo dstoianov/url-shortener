@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
       layout:decorate="~{fragments/main_layout}">
 
 <head>
@@ -7,30 +8,29 @@
 </head>
 
 <body>
-
 <div layout:fragment="content" class="container">
 
     <h1>Result</h1>
 
-    <p></p>
-
-    <table class="table">
-        <tbody>
-        <tr>
-            <th width="15%" scope="row">Original URL:</th>
-            <td width="15%"><span th:text="${data.longUrl.length()}"></span> Characters</td>
-            <td><a th:href="${data.longUrl}" th:text="${data.longUrl}" target="_blank"/></td>
-        </tr>
-        <tr>
-            <th scope="row">Short URL:</th>
-            <td><span th:text="${data.shortKey.length()}"></span> Characters</td>
-            <td><a th:href="${data.shortKey}" th:text="${data.shortKey}" target="_blank"/></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th width="15%" scope="row">Original URL:</th>
+                <td width="15%"><span th:text="${data.longUrl.length()}"></span> Characters</td>
+                <td><a th:href="${data.longUrl}" th:text="${data.longUrl}" target="_blank"></a></td>
+            </tr>
+            <tr>
+                <th scope="row">Short URL:</th>
+                <td><span th:text="${data.shortKey.length()}"></span> Characters</td>
+                <td><a th:href="${data.shortKey}" th:text="${data.shortKey}" target="_blank"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <p>
-        <a class="btn btn-primary" role="button" href="/">Submit another URL</a>
+        <a class="btn btn-primary" role="button" href="/">Create another link</a>
     </p>
 
 </div>
