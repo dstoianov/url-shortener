@@ -1,23 +1,14 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/main_layout}">
-<head>
-    <title>Not Found</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="fragments/main_layout :: page(title='Not Found')">
 
 <body>
+<div th:fragment="content" class="container">
 
-<div layout:fragment="content" class="container">
-
-    <p/>
-    <p/>
     <div class="alert alert-warning" role="alert">
-        <h1 align="center">Url with id '<span th:text="${url}"></span>' not found</h1>
+        <h1 class="center">Url with id '<span th:text="${url}"></span>' not found</h1>
     </div>
 
     <a href="/" class="badge badge-primary">Go back to home page</a>
 </div>
-
 </body>
 </html>

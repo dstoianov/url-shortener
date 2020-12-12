@@ -1,18 +1,16 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/main_layout}">
+      th:include="fragments/main_layout :: page(title='Simple URL Shortener')">
 
 <body>
-
-<div layout:fragment="content" class="container">
+<div id="main" th:fragment="content">
 
     <div class="container">
-        <h1 class="text-center"> Shorty: URL Shortener</h1>
-        <p class="lead text-center"> Create personalized short-links </p>
+        <h1 class="text-center">Shorty: URL Shortener</h1>
+        <p class="lead text-center">Create personalized short-links for yourself and your grandma</p>
 
         <div class="card">
-            <div class="card-header">Building a Simple URL Shortener With Spring Boot</div>
+            <div class="card-header">Simple URL Shortener based on Spring Boot and Thymeleaf</div>
             <div class="card-body">
 
                 <form action="#" th:action="@{/}" th:object="${originalUrlDto}" method="post">
