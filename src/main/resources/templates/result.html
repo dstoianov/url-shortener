@@ -1,14 +1,8 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{fragments/main_layout}">
-
-<head>
-    <title>Result page</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:include="fragments/main_layout :: page(title='Result page')">
 
 <body>
-<div layout:fragment="content" class="container">
+<div th:fragment="content" class="container">
 
     <h1>Result</h1>
 

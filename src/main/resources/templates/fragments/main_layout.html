@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="page(title)">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,19 +9,14 @@
     <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="webjars/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="webjars/bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
-
     <link rel="icon" th:href="@{/img/favicon.ico}" href="favicon.ico"/>
-    <!--    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">-->
 
-    <title>Simple URL Shortener</title>
+    <title th:text="${title}">Title goes here</title>
 
 </head>
 <body>
-<!--header.html  that's here  -->
 <div th:replace="fragments/header :: header"></div>
-
-<div layout:fragment="content"></div>
-<!--footer.html  that's here  -->
+<div th:replace="this :: content">content goes here</div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

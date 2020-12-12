@@ -1,11 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/main_layout}">
+      th:include="fragments/main_layout :: page(title='Simple URL Shortener')">
 
 <body>
-
-<div layout:fragment="content" class="container">
+<div id="main" th:fragment="content">
 
     <div class="container">
         <h1 class="text-center">Shorty: URL Shortener</h1>
