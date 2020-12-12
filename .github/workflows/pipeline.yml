@@ -1,10 +1,10 @@
 name: Java-CI
 
-env:
-  LINUX_VERSION: "ubuntu-18.04"
-  JAVA_VERSION: "11.0.4"
-
 on: [ push ]
+
+env:
+  LINUX_VERSION: ubuntu-18.04
+  JAVA_VERSION: 11.0.4
 
 jobs:
 
