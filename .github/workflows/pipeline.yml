@@ -28,7 +28,7 @@ jobs:
           mvn --version
           mvn -B compile
       - name: run unit tests
-        run: mvn -B verify -Dspring.profiles.active=test
+        run: mvn -B test -Dspring.profiles.active=test
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
