@@ -49,6 +49,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -64,6 +71,6 @@ jobs:
         run: |
           ls -lah
           mvn -B sonar:sonar -Dsonar.organization=dstoianov \
-              -Dsonar.exclusions=se.techinsight.urlshortener.config/**
+              -Dsonar.exclusions=se.techinsight.urlshortener.config/** \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.login=${{ secrets.SONAR_TOKEN }}
