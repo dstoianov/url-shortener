@@ -11,26 +11,34 @@ jobs:
 
     steps:
       - name: Git clone the repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
-      - name: compile
-        run: mvn -B compile
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Compile
+        run: |
+          mvn --version
+          mvn -B compile
       - name: run unit tests
-        run: mvn -B verify -Dspring.profiles.active=test
+        run: mvn -B test -Dspring.profiles.active=test
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v1
+        with:
+          report_paths: '**/target/surefire-reports/TEST-*.xml'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
           name: target
           path: target/
-      - name: Cache Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven
       - name: List environment variables
         run: env
 
@@ -41,11 +49,18 @@ jobs:
 
     steps:
       - name: Git clone the repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -59,5 +74,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          ls -la
-          mvn -B sonar:sonar -Dsonar.organization=dstoianov -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          ls -lah
+          mvn -B sonar:sonar -Dsonar.organization=dstoianov \
+              -Dsonar.exclusions=se.techinsight.urlshortener.config/** \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=${{ secrets.SONAR_TOKEN }}
