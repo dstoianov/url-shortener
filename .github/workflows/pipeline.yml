@@ -16,13 +16,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
-      #      - name: Cache local Maven repository
-      #        uses: actions/cache@v2
-      #        with:
-      #          path: ~/.m2/repository
-      #          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-      #          restore-keys: |
-      #            ${{ runner.os }}-maven-
       - name: compile
         run: mvn -B compile
       - name: run unit tests
@@ -32,6 +25,14 @@ jobs:
         with:
           name: target
           path: target/
+      - name: Cache Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven
+      - name: List environment variables
+        run: env
 
   sonar_part:
     name: Analyze with SonarCloud
@@ -54,9 +55,9 @@ jobs:
         run: |
           ls -lah target/
       - name: SonarCloud Scan
-        run: |
-          ls -la
-          mvn -B sonar:sonar -Dsonar.organization=dstoianov -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ls -la
+          mvn -B sonar:sonar -Dsonar.organization=dstoianov -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
