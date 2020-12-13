@@ -29,6 +29,11 @@ jobs:
           mvn -B compile
       - name: run unit tests
         run: mvn -B test -Dspring.profiles.active=test
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v1
+        with:
+          report_paths: '**/target/surefire-reports/TEST-*.xml'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
