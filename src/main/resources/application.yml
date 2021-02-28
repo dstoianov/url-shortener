@@ -16,6 +16,7 @@ springdoc:
   swagger-ui:
     path: /doc
   packages-to-scan: se.techinsight.urlshortener
+#  show-actuator: true
 
 
 spring:
@@ -47,6 +48,15 @@ spring:
     console:
       enabled: true
       path: /h2
+
+management:
+  endpoint:
+    info:
+      enabled: true
+  info:
+    git:
+      mode: SIMPLE # Must be full so all fields are present in the git.properties file.
+
 
 # Configuring info endpoint, /actuator/info
 info:
