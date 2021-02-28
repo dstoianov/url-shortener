@@ -1,18 +1,42 @@
 = Url Shortener project based on spring boot icon:power-off[]
-
-ifdef::env-github[]
-:tip-caption: :bulb:
-:note-caption: :information_source:
-:important-caption: :heavy_exclamation_mark:
-:caution-caption: :fire:
-:warning-caption: :warning:
-endif::[]
-:sectnums:
-:sectnumlevels: 5
-:icons: font
-:toc: left
+:linkattrs:
+:ast: &ast;
+:toc: auto
+:toc-placement: auto
+:toc-position: auto
+:toc-title: Table of contents
 :toclevels: 4
-:toc-title: Table of Contents
+:sectnums:
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+:imagesdir: ./doc
+
+toc::[]
+
+
+//ifdef::env-github[]
+//:tip-caption: :bulb:
+//:note-caption: :information_source:
+//:important-caption: :heavy_exclamation_mark:
+//:caution-caption: :fire:
+//:warning-caption: :warning:
+//endif::[]
+//:sectnums:
+//:sectnumlevels: 5
+//:icons: font
+//:toc: left
+//:toclevels: 4
+//:toc-title: Table of Contents
+
+
+
+
+
 
 [TIP]
 It's possible to use emojis as admonition icons on GitHub.
@@ -141,11 +165,11 @@ open in browser `http://localhost:8080/doc` for documentation,
 
 == Spring Boot family
 
-image::doc/spring_family.jpg[Spring Family,80%]
+image::spring_family.jpg[Spring Family,80%]
 
 == Open API 2 (Swagger2) to 3 Converter
 
-image::doc/openapi-2-to-3-converter.png[Spring Family,80%]
+image::openapi-2-to-3-converter.png[Spring Family,80%]
 
 == Section for testing ascii-doc icon:info-circle[]
 
@@ -173,6 +197,20 @@ list continuation:: a plus sign (`{plus}`) on a line by itself
 |Asciidoctor
 |Ruby
 |===
+
+=== Java Functional Interfaces
+
+```
+Supplier       ()    -> x
+Consumer       x     -> ()
+Callable       ()    -> x throws ex
+Runnable       ()    -> ()
+Function       x     -> y
+BiFunction     x,y   -> z
+Predicate      x     -> boolean
+UnaryOperator  x1    -> x2
+BinaryOperator x1,x2 -> x3
+```
 
 === Code Structure
 

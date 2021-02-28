@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.info.GitProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -35,12 +36,13 @@ public class UrlBusinessController {
     private String hostUrl;
 
     private final UrlShortenerRepository repository;
-
     private final UrlShortenerService urlShortenerService;
+    private final GitProperties gitProperties;
 
     @GetMapping(value = "/")
     public String index(Model model) {
         model.addAttribute("originalUrlDto", new OriginalUrlDto());
+        model.addAttribute("lastUpdate", gitProperties.getCommitTime());
         return "index";
     }
 
@@ -68,6 +70,7 @@ public class UrlBusinessController {
         forPage.setShortKey(String.format("%s/%s", hostUrl, url.getShortenKey()));
 
         model.addAttribute("data", forPage);
+        model.addAttribute("lastUpdate", gitProperties.getCommitTime());
         return "result";
     }
 
@@ -81,6 +84,7 @@ public class UrlBusinessController {
         log.info("Url does not exist with id '{}'", shortenKey);
         model.addAttribute("url", shortenKey);
         model.addAttribute("message", String.format("Url with id '%s' not found", shortenKey));
+        model.addAttribute("lastUpdate", gitProperties.getCommitTime());
         return new ModelAndView("not_found", model);
     }
 
