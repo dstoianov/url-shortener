@@ -25,10 +25,10 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Compile
         run: |
-          mvn --version
-          mvn -B compile
+          ./mvnw --version
+          ./mvnw -B compile
       - name: run unit tests
-        run: mvn -B test -Dspring.profiles.active=test
+        run: ./mvnw -B test -Dspring.profiles.active=test
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v1
         with:
@@ -75,7 +75,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           ls -lah
-          mvn -B sonar:sonar -Dsonar.organization=dstoianov \
+          ./mvnw -B sonar:sonar -Dsonar.organization=dstoianov \
               -Dsonar.exclusions=se.techinsight.urlshortener.config/** \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.login=${{ secrets.SONAR_TOKEN }}
