@@ -91,6 +91,7 @@ host:
 spring:
   profiles: prod
   h2.console.enabled: false
+  output.ansi.enabled: never
 
 server:
   port: 8085

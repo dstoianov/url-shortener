@@ -1,0 +1,19 @@
+# https://github.com/marketplace/actions/labeler?version=v3
+# Add 'repo' label to any root file changes
+workflows:
+  - .github/**/*
+
+# Add 'repo' label to any root file changes
+repo:
+  - ./*
+
+config:
+  - any: [ 'src/**/*.yml', 'src/**/*.properties', 'src/**/*.xml' ]
+
+test:
+  - src/test/**/*
+
+documentation:
+  - '*.md'
+  - '*.adoc'
+

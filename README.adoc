@@ -163,6 +163,15 @@ open in browser `http://localhost:8080/doc` for documentation,
 . http://localhost:8080/v2/api-docs used only for testing purposes
 . http://localhost:8080/v3/api-docs
 
+== Add maven wrapper
+
+```bash
+mvn --version
+mvn -N io.takari:maven:wrapper
+mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+```
+
+
 == Spring Boot family
 
 image::spring_family.jpg[Spring Family,80%]
