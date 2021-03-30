@@ -15,7 +15,7 @@
 *.ipr
 
 .idea/
-.mvn/
+!.mvn/wrapper/maven-wrapper.jar
 target/
 /.idea/
 
