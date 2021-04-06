@@ -25,7 +25,7 @@ jobs:
             ${{ runner.os }}-maven-
       - name: Compile
         run: |
-          ./mvnw --version
+          ./mvnw -B --version
           ./mvnw -B compile
       - name: run unit tests
         run: ./mvnw -B test -Dspring.profiles.active=test
