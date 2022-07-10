@@ -168,7 +168,7 @@ open in browser `http://localhost:8080/doc` for documentation,
 ```bash
 mvn --version
 mvn -N io.takari:maven:wrapper
-mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+mvn -N io.takari:maven:wrapper -Dmaven=3.8.6
 ```
 
 
