@@ -34,6 +34,11 @@ jobs:
         with:
           report_paths: '**/target/surefire-reports/TEST-*.xml'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: "**/surefire-reports/TEST-*.xml"
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
